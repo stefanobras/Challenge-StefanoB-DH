@@ -22,3 +22,17 @@
     background-color: #0c1522;
     font-weight: bold;
 }
+
+
+ul.navbaritems {
+    position: absolute;
+    right: 0;
+}
+
+.navbaritems-container {
+    position: relative;
+}
+
+.homeitems-container {
+    margin: 0;
+}

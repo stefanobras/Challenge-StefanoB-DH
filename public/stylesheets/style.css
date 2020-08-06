@@ -325,7 +325,11 @@ input:disabled{
     background-image: url(https://i.pinimg.com/originals/de/d4/9d/ded49d1d205f6ae5ae69e55ad54083fa.jpg);
 }
 
-.mainregisterbox-container {
+.mainlogin-container {
+    background-image: url(https://i.pinimg.com/originals/6c/68/bf/6c68bf814747564392a2fe7598f64d79.jpg);
+}
+
+.mainbox-container {
     padding: 100px;
     background-color: rgba(0, 0, 0, 0.75);
     color: white;

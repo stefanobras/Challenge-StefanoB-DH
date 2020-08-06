@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <%- include('partials/header')%>
+
+    <div class="container productdetail-container">
+        <div class="row">
+           <div class="col-4 item-photo">
+                <img style="max-width:100%;" src="/images/cds/cd31.jpg" />
+            </div>
+            <div class="col-5" style="border:0px solid gray">
+                <!-- Datos del vendedor y titulo del producto -->
+                <h3>Ten - Pearl Jam</h3>    
+                
+                <!-- Precios -->
+                <h6 class="title-price"><small>PRECIO</small></h6>
+                <h3 style="margin-top:0px;">$800</h3>   
+                
+                <!-- Metodos de Pago -->
+                <div>
+                    <svg class="ui-pdp-icon ui-pdp-icon--installments ui-pdp-color--BLACK" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="nonzero" d="M17.8 7.61V5.8a.6.6 0 0 0-.6-.6H2.8a.6.6 0 0 0-.6.6v1.81h15.6zm0 1.2H2.2v5.39a.6.6 0 0 0 .6.6h14.4a.6.6 0 0 0 .6-.6V8.81zM2.8 4h14.4A1.8 1.8 0 0 1 19 5.8v8.4a1.8 1.8 0 0 1-1.8 1.8H2.8A1.8 1.8 0 0 1 1 14.2V5.8A1.8 1.8 0 0 1 2.8 4zm1.195 8.996l.002-1.2 4.204.007-.002 1.2-4.204-.007z"></path></svg>
+                    <div>
+                        <h2 style="font-size: medium;">Pagá en hasta 3 cuotas</h2>
+                    </div>
+                </div>
+                
+                <!-- Cantidad -->
+                <div class="section" style="padding:20px;">
+                    <h6 class="title-attr">CANTIDAD</h6>                    
+                    <div class="qty btn-qty">
+                        <span class="minus bg-dark">-</span>
+                        <input type="number" class="count" name="qty" value="1">
+                        <span class="plus bg-dark">+</span>
+                    </div>
+                </div> 
+    
+                <!-- Botones de compra -->
+                <div class="section" style="padding-bottom:20px;">
+                    <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar al Carrito</button>
+                </div>                                        
+            </div>                              
+    
+            <div class="col-9">
+                <ul class="menu-items">
+                    <li class="detailproduct-title">Detalle del producto</li>
+                </ul>
+                <div style="width:100%;border-top:1px solid silver">
+                    <p style="padding: 10px;">Ten (1991) - Pearl Jam, CD.</p>
+                </div>
+            </div>		
+        </div>
+    </div>     
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">¡Productos Recomendados!</h1>
+          <p class="lead">Si te gusta este producto, quizas estos puedan interesarte:</p>
+        </div>
+    </div>
+
+    <div class="row homeitems-container">
+        <div class="card col-2" style="width: 18rem;">
+            <img src="/images/vinyls/v50.png" class="card-img-top" alt="v50">
+            <div class="card-body">
+              <h5 class="card-title">Hash Pipe - Weezer</h5>
+              <p class="card-text">Hash Pipe (2001), Weezer.</p>
+              <a href="#" class="btn btn-primary">1200$</a>
+            </div>
+        </div>
+
+        <div class="card col-2" style="width: 18rem;">
+            <img src="/images/vinyls/v50.png" class="card-img-top" alt="v50">
+            <div class="card-body">
+              <h5 class="card-title">Hash Pipe - Weezer</h5>
+              <p class="card-text">Hash Pipe (2001), Weezer.</p>
+              <a href="#" class="btn btn-primary">1200$</a>
+            </div>
+        </div>
+
+        <div class="card col-2" style="width: 18rem;">
+            <img src="/images/vinyls/v50.png" class="card-img-top" alt="v50">
+            <div class="card-body">
+              <h5 class="card-title">Hash Pipe - Weezer</h5>
+              <p class="card-text">Hash Pipe (2001), Weezer.</p>
+              <a href="#" class="btn btn-primary">1200$</a>
+            </div>
+        </div>
+
+        <div class="card col-2" style="width: 18rem;">
+            <img src="/images/vinyls/v50.png" class="card-img-top" alt="v50">
+            <div class="card-body">
+              <h5 class="card-title">Hash Pipe - Weezer</h5>
+              <p class="card-text">Hash Pipe (2001), Weezer.</p>
+              <a href="#" class="btn btn-primary">1200$</a>
+            </div>
+        </div>
+
+        <div class="card col-2" style="width: 18rem;">
+            <img src="/images/vinyls/v50.png" class="card-img-top" alt="v50">
+            <div class="card-body">
+              <h5 class="card-title">Hash Pipe - Weezer</h5>
+              <p class="card-text">Hash Pipe (2001), Weezer.</p>
+              <a href="#" class="btn btn-primary">1200$</a>
+            </div>
+        </div>
+
+        <div class="card col-2" style="width: 18rem;">
+            <img src="/images/vinyls/v50.png" class="card-img-top" alt="v50">
+            <div class="card-body">
+              <h5 class="card-title">Hash Pipe - Weezer</h5>
+              <p class="card-text">Hash Pipe (2001), Weezer.</p>
+              <a href="#" class="btn btn-primary">1200$</a>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer')%>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   <script>
+       	$(document).ready(function(){
+		    $('.count').prop('disabled', true);
+   			$(document).on('click','.plus',function(){
+				$('.count').val(parseInt($('.count').val()) + 1 );
+    		});
+        	$(document).on('click','.minus',function(){
+    			$('.count').val(parseInt($('.count').val()) - 1 );
+    				if ($('.count').val() == 0) {
+						$('.count').val(1);
+					}
+    	    	});
+ 		});
+   </script>
+</body>
+</html>

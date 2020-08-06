@@ -4,3 +4,21 @@
     height: 500px;
     overflow: hidden;
 }
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.75);
+    position: relative;
+    bottom: 750px;
+    width: 69%;
+}
+
+.jumbotron, .page-footer {
+    color: white;
+    background-color: #0c1522;
+}
+
+.btn {
+    color: white;
+    background-color: #0c1522;
+    font-weight: bold;
+}

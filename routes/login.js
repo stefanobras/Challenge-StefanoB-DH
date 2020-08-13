@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+let usersController = require('../controllers/usersController');
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Express' });
-});
+router.get('/', usersController.login);
+
+router.post('/', usersController.processLogin);
 
 module.exports = router;

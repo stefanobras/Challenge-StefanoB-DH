@@ -14,12 +14,14 @@
         <h1>¡Ingresa tus datos para comenzar a comprar!</h1>
         <form method='POST' autocomplete="off">
             <div class="form-group">
-                <label for="name">Nombre</label>
-                <input name='name' type="text" class="form-control" required><%= typeof errors == 'undefined' ? null : errors.username ? errors.username.msg : null %>
+                <label for="name" class="form-label">Nombre</label>
+                <input name='name' type="text" class="form-control" placeholder="Stefano" value="<%= typeof old != 'undefined' ? old.name : '' %>">
+                <p class="error"><%= typeof errors == 'undefined' ? '' : errors.name ? errors.name.msg : '' %></p>
             </div>
             <div class="form-group">
-                <label for="surname">Apellido</label>
-                <input name='surname' type="text" class="form-control" required><%= typeof errors == 'undefined' ? null : errors.username ? errors.username.msg : null %>
+                <label for="surname" class="form-label">Apellido</label>
+                <input name='surname' type="text" class="form-control" placeholder="Brascetta" value="<%= typeof old != 'undefined' ? old.surname : '' %>">
+                <p class="error"><%= typeof errors == 'undefined' ? '' : errors.surname ? errors.surname.msg : '' %></p>
             </div>
             <div class="form-group">
                 <label for="address">Provincia</label>
@@ -29,19 +31,15 @@
                 </select>
               </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Email</label>
-              <input name="email" type="text" class="form-control" aria-describedby="emailHelp" autocomplete="off" required>
-              <p class="error">
-                <%= typeof errors == 'undefined' ? null : errors.email ? errors.email.msg : null %>
-              </p>
-              <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tus datos con nadie.</small>
+              <label for="email" class="form-label">Email</label>
+              <input name="email" type="text" class="form-control" placeholder="stefanobras20@gmail.com" value="<%= typeof old != 'undefined' ? old.email : '' %>">
+              <p class="error"><%= typeof errors == 'undefined' ? '' : errors.email ? errors.email.msg : '' %></p>
+            <small id="emailHelp" class="form-text text-muted">Nunca compartiremos tus datos con nadie.</small>
             </div>
             <div class="form-group">
-              <label for="password">Contraseña</label>
-              <input name='password' type="password" class="form-control" required>
-              <p class="error">
-                <%= typeof errors == 'undefined' ? null : errors.password ? errors.password.msg : null %>
-              </p>
+              <label for="password" class="form-label">Contraseña</label>
+              <input name='password' type="password" class="form-control">
+              <p class="error"><%= typeof errors == 'undefined' ? '' : errors.password ? errors.password.msg : '' %></p>
             </div>
             <button type="submit" class="btn btn-primary">Registrarme</button>
           </form>

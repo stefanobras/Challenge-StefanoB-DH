@@ -16,11 +16,16 @@
             <form method='POST'>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input name='email' type="text" class="form-control">
+                  <input name='email' type="text" class="form-control" placeholder="stefanobras20@gmail.com" value="<%= typeof old != 'undefined' ? old.email : '' %>">
+                  <p class="error"><%= typeof errors == 'undefined' ? '' : errors.email ? errors.email.msg : '' %></p>
                 </div>
                 <div class="form-group">
                   <label for="password">Contraseña</label>
                   <input name='password' type="password" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="remember" class="form-label">Recuérdame</label>
+                  <input type="checkbox" name="remember" class="form-check">
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
               </form>

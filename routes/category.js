@@ -3,7 +3,7 @@ const router = express.Router();
 
 const categoryController = require('../controllers/categoryController');
 
-router.get('/:id', categoryController.root);
+router.get('/:id', categoryController.detail);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

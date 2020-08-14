@@ -8,26 +8,50 @@
       
         <div class="collapse navbar-collapse navbaritems-container" id="navbarSupportedContent">
             <ul class="navbar-nav navbaritems">
-              <li class="nav-item">
-                <a class="nav-link" href="/register">Registrarse <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Productos
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/category">CDs</a>
-                  <a class="dropdown-item" href="/category">Vinilos</a>
-                  <a class="dropdown-item" href="/category">Cassettes</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Iniciar Sesión</a>
-              </li>
+              <% if(locals.user){ %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Productos
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/category/1">CDs</a>
+                    <a class="dropdown-item" href="/category/2">Vinilos</a>
+                    <a class="dropdown-item" href="/category/3">Cassettes</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/cart">Mi Carrito <i class="fas fa-cart-plus"></i> <span class="badge badge-info"><%= cartQty %></span>
+                  </a>
+                </li>
+                <li>
+                  <form action="/logout" method="POST">
+                    <button class="logout" type="submit">
+                      Cerrar Sesión <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                  </form>
+                </li>
+              <% } else { %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Productos
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/category/1">CDs</a>
+                    <a class="dropdown-item" href="/category/2">Vinilos</a>
+                    <a class="dropdown-item" href="/category/3">Cassettes</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/register">Registrarse <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">Iniciar Sesión</a>
+                </li>
+              <% } %>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </div>
 

@@ -3,17 +3,10 @@ const {Category, Product} = require('../database/models')
 const controller ={
 	
 	// Detail - Detail from one product
-	detail: (req, res) => {
-	
-		Product.findByPk(req.params.productId, {
-			  include: ['category', 'user']
-	     })
-		    .then(product => { 
-				return res.render('product', {products})
-			})
-             .catch(error => console.log(error))		
-
-		
+	detail (req, res) {
+		Product.findByPk(req.params.id)
+			.then(product => res.render('product', { product }))
+			.catch(e => console.log(e));
 	},
 
 	// Ir a la vista del formulario 

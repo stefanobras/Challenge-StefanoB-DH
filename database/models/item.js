@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     idUser:DataTypes.INTEGER,
     idProduct:DataTypes.INTEGER,
     idCart:DataTypes.INTEGER,
+  }, {
+    tablename: 'cartitems'
   });
 
   Item.closeItems = function(idUser) {

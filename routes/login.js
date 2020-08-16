@@ -14,5 +14,6 @@ let usersController = require('../controllers/usersController');
 router.get('/', guestMiddleware, usersController.login);
 
 router.post('/', guestMiddleware, validator.login, usersController.processLogin);
+router.post('/logout', authMiddleware, usersController.logout);
 
 module.exports = router;

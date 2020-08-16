@@ -334,3 +334,7 @@ input:disabled{
     background-color: rgba(0, 0, 0, 0.75);
     color: white;
 }
+
+.logout {
+    background-color: #0c1522;
+}

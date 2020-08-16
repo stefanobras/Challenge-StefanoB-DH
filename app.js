@@ -31,14 +31,12 @@ app.use(session({
 ////////////////////////////
 const indexRouter = require('./routes/index');
 const productsRouter = require('./routes/product');
-const usersRouter = require('./routes/users');
 const categoryRouter = require('./routes/category');
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const cartRouter = require('./routes/cart');
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/category', categoryRouter);
 app.use('/product', productsRouter);
 app.use('/cart', cartRouter);

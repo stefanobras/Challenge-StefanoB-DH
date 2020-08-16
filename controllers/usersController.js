@@ -31,6 +31,23 @@ const usersController = {
             });
       }
     },
+    logout(req, res) {
+
+      db.Item.destroy({
+        where: {
+          idUser: req.session.user.id,
+          status: 1,
+        },
+      })
+        .then(() => {
+          req.session.destroy();
+  
+          return res.redirect("/");
+          
+        })
+        .catch((e) => console.log(e));
+    },
+
     processLogin(req, res) {
       const errors = validationResult(req);
   

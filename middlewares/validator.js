@@ -1,6 +1,5 @@
 const { body } = require("express-validator");
-const path = require("path");
-const bycript = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 
 const { User } = require("../database/models");
 
@@ -60,7 +59,7 @@ module.exports = {
           },
         }).then((user) => {
           if (user) {
-            if (!bycript.compareSync(req.body.password, user.password)) {
+            if (!bcrypt.compareSync(req.body.password, user.password)) {
               return Promise.reject("La Contraseña y/o Email no coinciden");
             }
           } else {

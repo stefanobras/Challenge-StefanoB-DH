@@ -4,6 +4,7 @@ const router = express.Router();
 const validator = require('../middlewares/validator');
 const guestMiddleware = require('../middlewares/guest');
 const authMiddleware = require('../middlewares/auth');
+const loginMiddleware = require('../middlewares/log');
 
 let usersController = require('../controllers/usersController');
 

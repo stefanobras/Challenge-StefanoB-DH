@@ -3,10 +3,11 @@ const router = express.Router();
 
 const indexController = require('../controllers/indexController');
 
+const loginMiddleware = require('../middlewares/log');
+
 /* GET home page. */
 router.get('/', indexController.load);
 
-router.get('/', indexController.root);
 router.get('/search', indexController.search);
 
 

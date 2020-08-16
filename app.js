@@ -7,7 +7,6 @@ const logger = require('morgan');
 const cors = require('cors');
 const methodOverride = require('method-override');
 
-const loginMiddleware = require('./middlewares/login');
 
 const app = express();
 

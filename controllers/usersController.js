@@ -1,14 +1,15 @@
 const bcrypt = require('bcryptjs');
 const db = require('../database/models');
+const crypto = require("crypto");
 const { validationResult } = require('express-validator');
 
 const usersController = {
 
    register: (req, res, next) => {
-      res.render('register', {title: 'Express'});
+      res.render('register');
    },
    login: (req, res, next) => {
-      res.render('login', {title: 'Express'});
+      res.render('login');
    },
    processRegister (req, res) {
       const errors = validationResult(req);
@@ -42,6 +43,7 @@ const usersController = {
             req.session.user = _user;
   
             if (req.body.remember) {
+
              const token = crypto.randomBytes(64).toString("base64");
 
              res.cookie("userToken", token, {
@@ -56,6 +58,7 @@ const usersController = {
                .catch((e) => console.log(e));
             } else {
               return res.redirect("/");
+              
             }
           })
           .catch((e) => console.log(e));

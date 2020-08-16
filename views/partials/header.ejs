@@ -8,7 +8,7 @@
       
         <div class="collapse navbar-collapse navbaritems-container" id="navbarSupportedContent">
             <ul class="navbar-nav navbaritems">
-              <% if(locals.user){ %>
+              <% if(loggedIn === true){ %>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Productos
@@ -31,7 +31,7 @@
               <% } else { %>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Productos
+                   Productos
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/category/1">CDs</a>

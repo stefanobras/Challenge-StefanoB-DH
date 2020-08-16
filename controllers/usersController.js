@@ -6,10 +6,12 @@ const { validationResult } = require('express-validator');
 const usersController = {
 
    register: (req, res, next) => {
-      res.render('register');
+    let loggedIn = false;
+      res.render('register', {loggedIn} );
    },
    login: (req, res, next) => {
-      res.render('login');
+    let loggedIn = false;
+      res.render('login', {loggedIn} );
    },
    processRegister (req, res) {
       const errors = validationResult(req);
@@ -57,7 +59,8 @@ const usersController = {
                 .then((response) => res.redirect("/"))
                .catch((e) => console.log(e));
             } else {
-              return res.redirect("/");
+              let loggedIn = true;
+              return res.render("index", {loggedIn});
               
             }
           })

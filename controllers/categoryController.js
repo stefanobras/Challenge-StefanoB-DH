@@ -24,19 +24,42 @@ const controller = {
     
 },
     detail (req, res) {
-        const category = Category.findByPk(req.params.id);
+        if (!req.session.user) {
+            let loggedIn = false;
+            const category = Category.findByPk(req.params.id);
+            const product = Product.findAll({
+                where : {
+                    idCategory : req.params.id
+                }
+            })
 
-        const product = Product.findAll({
-            where : {
-                idCategory : req.params.id
-            }
-        })
-
-        Promise.all([product, category])
-			.then(([product, category]) => {
-				return res.render('category', { product, category })
+            Promise.all([product, category, loggedIn])
+			.then(([product, category, loggedIn]) => {
+				return res.render('category', { product, category, loggedIn })
 			})
-},
+
+        } else {
+            let loggedIn = true;
+            const category = Category.findByPk(req.params.id);
+            const product = Product.findAll({
+                where : {
+                    idCategory : req.params.id
+                }
+            })
+
+            Promise.all([product, category, loggedIn])
+			.then(([product, category, loggedIn]) => {
+				return res.render('category', { product, category, loggedIn })
+			})
+            
+        }
+
+        
+
+        
+
+        
+    },
 	
 };
 

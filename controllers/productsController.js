@@ -4,9 +4,28 @@ const controller ={
 	
 	// Detail - Detail from one product
 	detail (req, res) {
-		Product.findByPk(req.params.id)
-			.then(product => res.render('product', { product }))
-			.catch(e => console.log(e));
+		if (!req.session.user) {
+            let loggedIn = false;
+            const product = Product.findByPk(req.params.id)
+            
+
+            Promise.all([product, loggedIn])
+			.then(([product, loggedIn]) => {
+				return res.render('product', { product, loggedIn })
+			})
+
+        } else {
+            let loggedIn = true;
+			const product = Product.findByPk(req.params.id)
+
+            Promise.all([product, loggedIn])
+			.then(([product, loggedIn]) => {
+				return res.render('product', { product, loggedIn })
+			})
+            
+        }
+
+
 	},
 
 	// Ir a la vista del formulario 

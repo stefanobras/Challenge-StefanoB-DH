@@ -19,7 +19,7 @@ const controller = {
 		return res.render('results', {productos})
 	},
 	load : (req, res, next) => {
-		res.render('index');
+        res.render('index');
 	  },
 };
 

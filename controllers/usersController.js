@@ -84,12 +84,15 @@ const usersController = {
           })
           .catch((e) => console.log(e));
       } else {
-        return res.render("login", {
+        let loggedIn = false;
+        res.render("login", {
           errors: errors.mapped(),
           old: req.body,
+          loggedIn,
         });
       }
     },
+    
     cart(req, res){
       db.Item.findAll({
         where: {
@@ -102,14 +105,13 @@ const usersController = {
         res.render("cart", { items, loggedIn })
       });
     },
+
     addToCart(req, res) {
-      const errors = validationResult(req);
   
-      if (errors.isEmpty()) {
-        Product.findByPk(req.body.idProduct, {
+      db.Product.findByPk(req.body.idProduct, {
         })
           .then((product) => {
-            return Item.create({
+            return db.Item.create({
               price: product.price,
               quantity: req.body.quantity,
               subTotal: product.price * req.body.quantity,
@@ -120,14 +122,7 @@ const usersController = {
           })
           .then((item) => res.redirect("/cart"))
           .catch((e) => console.log(e));
-      } else {
-         Product.findByPk(req.body.idProduct, {
-         })
-           .then(product => {
-             let loggedIn = true;
-              res.render('products', {product, loggedIn, errors: errors.mapped()})
-           })
-      }
+      
     },
 }
 

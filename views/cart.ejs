@@ -16,19 +16,25 @@
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
                         <div class="cart_container">
-                            <div class="cart_title">Mi Carrito<small> (<%=items.length%> producto añadido) </small>
+                            <div class="cart_title">Mi Carrito<small> 
+                                <% if (items.length > 1) { %>
+                                    (<%=items.length%> productos añadidos)
+                                <% } else { %>
+                                    (<%=items.length%> producto añadido)
+                                <% } %>
+                                 </small>
                             </div>
                             <div class="cart_items">
                                 <ul class="cart_list ul-cart">
                                     <% items.forEach(item => { %>
                                         <li class="cart_item clearfix">
                                             <div class="cart_item_image">
-                                                <img src="/images/<%=item.product.category%>/<%=item.product.img%>" alt="<%= item.product.name %>">
+                                                <img src="/images/<%=item.product.idCategory%>/<%=item.product.img%>" alt="<%= item.product.name %>">
                                             </div>
                                             <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                                 <div class="cart_item_name cart_info_col">
                                                     <div class="cart_item_title">Nombre</div>
-                                                    <div class="cart_item_text"><%=product.name %></div>
+                                                    <div class="cart_item_text"><%=item.product.name %></div>
                                                 </div>
                                                 <div class="cart_item_quantity cart_info_col">
                                                     <div class="cart_item_title">Cantidad</div>

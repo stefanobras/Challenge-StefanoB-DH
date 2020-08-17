@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const validator = require('../middlewares/validator');
+
 const categoryController = require('../controllers/categoryController');
 let usersController = require('../controllers/usersController');
 
@@ -14,5 +16,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/logout', authMiddleware, usersController.logout);
+router.post('/addtocart', authMiddleware, validator.addToCart, usersController.addToCart);
 
 module.exports = router;

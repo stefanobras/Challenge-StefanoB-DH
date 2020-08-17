@@ -63,9 +63,14 @@ module.exports = {
               return Promise.reject("La Contraseña y/o Email no coinciden");
             }
           } else {
-            return Promise.reject("La Contraseña y/o Email no coinciden");
+            Promise.reject("La Contraseña y/o Email no coinciden");
           }
         });
       }),
+  ],
+  addToCart: [
+    body("quantity")
+      .custom((value) => value > 0)
+      .withMessage("Debe agregar al menos 1 producto al carrito"),
   ],
 }

@@ -11,14 +11,9 @@ let usersController = require('../controllers/usersController');
 
 router.get('/:id', productsController.detail);
 
-router.get('/create', productsController.create);
-router.post('/create', productsController.store);
 
-router.get('/edit/:productId', productsController.edit);
-router.post('/edit/:productId', productsController.update);
 router.post('/logout', authMiddleware, usersController.logout);
-
-router.delete('/delete/:id', productsController.destroy);
+router.post('/addtocart', authMiddleware, validator.addToCart, usersController.addToCart);
 
 
 module.exports = router;

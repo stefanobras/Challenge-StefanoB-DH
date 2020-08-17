@@ -13,5 +13,6 @@ router.get('/', guestMiddleware, usersController.register);
 
 router.post('/', guestMiddleware, validator.register, usersController.processRegister);
 router.post('/logout', authMiddleware, usersController.logout);
+router.post('/addtocart', authMiddleware, validator.addToCart, usersController.addToCart);
 
 module.exports = router;

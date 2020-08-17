@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const validator = require('../middlewares/validator');
 const indexController = require('../controllers/indexController');
 let usersController = require('../controllers/usersController');
 
@@ -12,6 +13,7 @@ router.get('/', initialLoginMiddleware, indexController.load);
 router.get('/search', indexController.search);
 
 router.post('/logout', authMiddleware, usersController.logout);
+router.post('/addtocart', authMiddleware, validator.addToCart, usersController.addToCart);
 
 
 

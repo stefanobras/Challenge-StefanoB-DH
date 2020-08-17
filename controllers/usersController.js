@@ -13,6 +13,30 @@ const usersController = {
     let loggedIn = false;
       res.render('login', {loggedIn});
    },
+   checkout: (req, res, next) => {
+    
+    const item = db.Item.findAll({
+      where : {
+        idUser : req.session.user.id
+      }
+    })
+
+    const cart = db.Cart.findAll( {
+        where : {
+          idUser : req.session.user.id
+        }
+      })
+
+    const user = req.session.user.id
+      
+      Promise.all([item, cart, user])
+      .then(([item, cart, user]) => {
+        let loggedIn = true;
+        res.render('checkout', {loggedIn, cart, item, user});
+      })
+      
+   },
+   
    processRegister (req, res) {
       const errors = validationResult(req);
   
@@ -169,7 +193,7 @@ const usersController = {
         .then((cart) => {
           return db.Item.assignItems(req.session.user.id, cart.id);
         })
-        .then(() => res.redirect("/"))
+        .then(() => res.redirect("/checkout"))
         .catch((e) => console.log(e));
     },
 }

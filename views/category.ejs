@@ -81,7 +81,7 @@
 
     <% product.forEach(product => { %>
       <div class="card col-2" style="width: 18rem;">
-        <img src="/images/<%=product.idCategory%>/<%=product.img%>" class="card-img-top">
+        <img src="/images/<%=product.img%>" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title"> <%=product.name %> </h5>
           <a href="/product/<%=product.id %>" class="btn btn-primary"> $<%=product.price %> </a>

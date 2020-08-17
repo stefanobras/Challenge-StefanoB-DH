@@ -1,4 +1,6 @@
 const {Category, Product} = require('../database/models')
+const { validationResult } = require('express-validator');
+const db = require('../database/models');
 
 const controller ={
 	
@@ -27,72 +29,36 @@ const controller ={
 
 
 	},
+	store (req, res) {
+		let loggedIn = true;
 
-	// Ir a la vista del formulario 
-	create: (req, res) => {
-		Category.findAll()
-		   .then(categories => {
-		       return res.render('product-create-form', {categories});
-        })
-	 .catch(error => console.log(error))
-    },
+		const errors = validationResult(req);
 
- // Create -  Method to store
- store: (req, res) => {
+		if(errors.isEmpty()){
+			const _body = req.body;
+			_body.description = req.body.description;
+			_body.price = Number(req.body.price);
+			_body.img= req.file.filename;
+			_body.idUser = req.session.user.id;
+			_body.idCategory = Number(req.body.category);
 
-	let products = req.body;
-	products.img = req.file.filename;
-	products.idUser = req.session.user.id;
+			db.Product.create(_body)
+				.then(product => {
+					
+					res.render('index', { loggedIn })
+				})
+				.catch(e => console.log(e));
+		} else {
+			const categories = Category.findAll();
 
-	// return res.send(product)
+			Promise.all([categories,])
+				.then(([categories,]) => res.render('crud-create', { categories, errors: errors.mapped(), old: req.body, loggedIn }))
+				.catch(e => console.log(e));
+		}
 
-	Product.create(products)
-		.then(products => {
-			return res.redirect('product' + products.id)
-		})
-},	
-
-	// Update - Form to edit
-	edit: (req, res) => {
-
-		const products = Product.findByPk(req.params.productsId);
-
-		const categories = Category.findAll();
-
-		Promise.all([products, categories])
-			.then(([products, categories]) => {
-				return res.render('product-edit-form', { products, categories })
-			})
 	},
 
-	// Update - Method to update
-	update: (req, res) => {
-		let products = req.body;
-		products.idUser = req.session.user.id
-		products.img = req.file.filename
-		Products.update(products, {
-			where: {
-				id: req.params.productsId
-			}
-		})
-			.then(confirm => {
-				return res.redirect('vista-producto' + req.params.productsId)
-			})
-			.catch(error => console.log(error))
-
-	},	
-
-	// Delete - Delete one product from DB
-	destroy : (req, res) => {
-
-		Product.destroy({
-			where: {
-				id: req.params.id
-			}
-		})
-			.then(() => res.redirect('/'))
-		
-	}
+ 
 };
 
 module.exports = controller;

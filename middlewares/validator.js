@@ -1,5 +1,7 @@
 const { body } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const path = require('path');
+
 
 const { User } = require("../database/models");
 
@@ -72,5 +74,39 @@ module.exports = {
     body("quantity")
       .custom((value) => value > 0)
       .withMessage("Debe agregar al menos 1 producto al carrito"),
+  ],
+  createProduct: [
+    body("name").notEmpty().withMessage("Campo obligatorio"),
+    body("price")
+      .notEmpty()
+      .withMessage("Campo obligatorio")
+      .bail()
+      .isNumeric()
+      .withMessage("Solo se aceptan números")
+      .bail()
+      .custom((value, { req }) => req.body.price > 0)
+      .withMessage("No se aceptan números negativos"),
+    body("image")
+      .custom((value, { req }) => req.file)
+      .withMessage("Debes ingresar una imagen para tu producto")
+      .bail()
+      .custom((value, { req }) => {
+        const acceptedExtensions = [".jpg", ".jpeg", ".png"];
+        const ext = path.extname(req.file.originalname);
+        return acceptedExtensions.includes(ext);
+      })
+      .withMessage(
+        "La imagen debe tener uno de los siguientes formatos: JPG, JPEG, PNG"
+      ),
+    body("category").notEmpty().withMessage("Campo obligatorio"),
+    body("description")
+      .notEmpty()
+      .withMessage("Campo obligatorio")
+      .bail()
+      .isLength({ min: 5 })
+      .withMessage("La descripción debe tener al menos 30 carácteres")
+      .bail()
+      .isLength({ max: 100 })
+      .withMessage("La descripción debe tener menos de 100 carácteres"),
   ],
 }

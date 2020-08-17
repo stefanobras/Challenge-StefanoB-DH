@@ -57,6 +57,7 @@ const usersController = {
             });
       }
     },
+
     logout(req, res) {
 
       db.Item.destroy({
@@ -72,6 +73,14 @@ const usersController = {
           
         })
         .catch((e) => console.log(e));
+    },
+
+    create(req, res) {
+      db.Category.findAll()
+      .then((categories) => {
+        let loggedIn = true
+        return res.render("crud-create", { loggedIn, categories });
+      })
     },
 
     processLogin(req, res) {

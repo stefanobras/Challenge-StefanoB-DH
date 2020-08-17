@@ -46,8 +46,9 @@
                                                 </div>
                                                 <div class="d-flex align-items-center" id='deletebutton'>
                                                     <form action="/deleteFromCart" method="POST">
+                                                        <input type="hidden" name="idItem" value="<%= item.id %>">
                                                         <button type="submit" class="action-button delete">
-                                                            <img src="https://www.iconsdb.com/icons/preview/red/trash-10-xxl.png" width="20" height="20" alt="">
+                                                            <img src="images/delete.png" width="20px" height="20px"  alt="">
                                                         </button>
                                                     </form>
                                                 </div>

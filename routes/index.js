@@ -14,7 +14,7 @@ router.get('/search', indexController.search);
 
 router.post('/logout', authMiddleware, usersController.logout);
 router.post('/addtocart', authMiddleware, validator.addToCart, usersController.addToCart);
-
+router.post('/deleteFromCart', authMiddleware, usersController.deleteFromCart);
 
 
 module.exports = router;

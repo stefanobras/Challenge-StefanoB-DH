@@ -7,11 +7,11 @@ const usersController = {
 
    register: (req, res, next) => {
     let loggedIn = false;
-      res.render('register', {loggedIn} );
+      res.render('register', {loggedIn});
    },
    login: (req, res, next) => {
     let loggedIn = false;
-      res.render('login', {loggedIn} );
+      res.render('login', {loggedIn});
    },
    processRegister (req, res) {
       const errors = validationResult(req);
@@ -25,9 +25,11 @@ const usersController = {
         db.User.create(_body)
           .then(() => res.redirect('/login'))
       } else {
-            return res.render('register', {
-               errors: errors.mapped(),
-               old: req.body,
+            let loggedIn = false;
+            res.render('register', { 
+              errors: errors.mapped(),
+              old: req.body,
+              loggedIn,
             });
       }
     },
@@ -61,6 +63,7 @@ const usersController = {
             let _user = { ...user.dataValues };
             req.session.user = _user;
             let loggedIn = true;
+            let User = db.User;
   
             if (req.body.remember) {
 
@@ -85,7 +88,7 @@ const usersController = {
           .catch((e) => console.log(e));
       } else {
         let loggedIn = false;
-        res.render("login", {
+        res.render("login", { 
           errors: errors.mapped(),
           old: req.body,
           loggedIn,
@@ -102,12 +105,11 @@ const usersController = {
         include: ['product'],
       }).then((items) => {
         let loggedIn = true;
-        res.render("cart", { items, loggedIn })
+        res.render("cart", { items, loggedIn})
       });
     },
 
     addToCart(req, res) {
-  
       db.Product.findByPk(req.body.idProduct, {
         })
           .then((product) => {
@@ -123,6 +125,17 @@ const usersController = {
           .then((item) => res.redirect("/cart"))
           .catch((e) => console.log(e));
       
+    },
+
+    deleteFromCart(req, res) {
+      db.Item.destroy({
+        where: {
+          id: req.body.idItem,
+        },
+        force: true,
+      })
+        .then((response) => res.redirect("/cart"))
+        .catch((e) => console.log(e));
     },
 }
 

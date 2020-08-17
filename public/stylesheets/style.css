@@ -357,3 +357,7 @@ footer {
     margin-left: auto;
     margin-right: auto;
 }
+
+.action-button { 
+    width: 50px;
+}

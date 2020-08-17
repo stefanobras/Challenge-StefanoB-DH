@@ -37,6 +37,7 @@ const loginRouter = require('./routes/login');
 const cartRouter = require('./routes/cart');
 const checkoutRouter = require('./routes/checkout');
 const createRouter = require('./routes/create');
+const editRouter = require('./routes/edit');
 
 app.use('/', indexRouter);
 app.use('/category', categoryRouter);
@@ -46,6 +47,7 @@ app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/create', createRouter);
+app.use('/edit', editRouter);
 
 
 // catch 404 and forward to error handler

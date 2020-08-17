@@ -112,6 +112,17 @@ const controller ={
 				.catch(e => console.log(e));
 		}
 	},
+	destroy (req, res) {
+		db.Product.destroy({
+			where: {
+				id: req.params.id
+			},
+		})
+			.then(confirm => {
+				res.redirect('/')
+			})
+			.catch(e => console.log(e));
+	},
 
  
 };

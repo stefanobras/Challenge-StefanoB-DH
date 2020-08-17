@@ -8,6 +8,7 @@ const adminMiddleware = require('../middlewares/admin');
 
 let usersController = require('../controllers/usersController');
 let productsController = require('../controllers/productsController');
+const admin = require('../middlewares/admin');
 
 /////////////////////
 
@@ -42,4 +43,5 @@ var storage = multer.diskStorage({
 router.get('/:id', adminMiddleware, productsController.edit);
 
 router.post('/:id', adminMiddleware, upload.single('image'), validator.editProduct, productsController.update);
+router.delete('/:id', adminMiddleware, productsController.destroy);
 module.exports = router;

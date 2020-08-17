@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     img:DataTypes.STRING,
     sale:DataTypes.INTEGER,
     idCategory:DataTypes.INTEGER,
-  }, {});
+  }, { sequelize, paranoid: true,});
 
   Product.associate = function(models) {
 

@@ -137,6 +137,41 @@ const usersController = {
         .then((response) => res.redirect("/cart"))
         .catch((e) => console.log(e));
     },
+
+    shop(req, res) {
+      let items;
+  
+      db.Item.findAll({
+        where: {
+          idUser: req.session.user.id,
+          status: 1,
+        },
+      })
+        .then((itemsSearched) => {
+          items = itemsSearched;
+          return db.Item.closeItems(req.session.user.id);
+        })
+        .then(() => {
+          return db.Cart.findOne({
+            order: [["createdAt", "DESC"]],
+          });
+        })
+        .then((cart) => {
+          return db.Cart.create({
+            cartNumber: cart ? ++cart.cartNumber : 1000,
+            total: items.reduce(
+              (total, item) => (total = total + item.subTotal),
+              0
+            ),
+            idUser: req.session.user.id,
+          });
+        })
+        .then((cart) => {
+          return db.Item.assignItems(req.session.user.id, cart.id);
+        })
+        .then(() => res.redirect("/"))
+        .catch((e) => console.log(e));
+    },
 }
 
 module.exports = usersController;

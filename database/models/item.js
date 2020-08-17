@@ -9,18 +9,17 @@ module.exports = (sequelize, DataTypes) => {
     idProduct:DataTypes.INTEGER,
     idCart:DataTypes.INTEGER,
   }, {
-    tablename: 'cartitems'
   });
 
   Item.closeItems = function(idUser) {
       return sequelize.query(
-        `UPDATE cartitems SET status = 0 WHERE idUser = ${idUser} AND status = 1`
+        `UPDATE items SET status = 0 WHERE idUser = ${idUser} AND status = 1`
       );
   };
 
   Item.assignItems = function (idUser, idCart) {
       return sequelize.query(
-        `UPDATE cartitems SET idCart = ${idCart} WHERE idUser = ${idUser} AND idCart IS NULL`
+        `UPDATE items SET idCart = ${idCart} WHERE idUser = ${idUser} AND idCart IS NULL`
       );
   };
 

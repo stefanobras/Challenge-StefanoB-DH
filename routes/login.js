@@ -17,5 +17,6 @@ router.post('/', guestMiddleware, validator.login, usersController.processLogin)
 router.post('/logout', authMiddleware, usersController.logout);
 router.post('/addtocart', authMiddleware, validator.addToCart, usersController.addToCart);
 router.post('/deleteFromCart', authMiddleware, usersController.deleteFromCart);
+router.post('/shop', authMiddleware, usersController.shop);
 
 module.exports = router;

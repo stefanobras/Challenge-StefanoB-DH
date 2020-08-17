@@ -60,6 +60,7 @@ const usersController = {
           .then((user) => {
             let _user = { ...user.dataValues };
             req.session.user = _user;
+            let loggedIn = true;
   
             if (req.body.remember) {
 
@@ -73,7 +74,7 @@ const usersController = {
                token,
                idUser: user.id,
              })
-                .then((response) => res.redirect("/"))
+                .then((response) => res.render("index", { loggedIn}))
                .catch((e) => console.log(e));
             } else {
               let loggedIn = true;
@@ -87,6 +88,45 @@ const usersController = {
           errors: errors.mapped(),
           old: req.body,
         });
+      }
+    },
+    cart(req, res){
+      db.Item.findAll({
+        where: {
+          idUser: req.session.user.id,
+          status: 1,
+        },
+        include: ['product'],
+      }).then((items) => {
+        let loggedIn = true;
+        res.render("cart", { items, loggedIn })
+      });
+    },
+    addToCart(req, res) {
+      const errors = validationResult(req);
+  
+      if (errors.isEmpty()) {
+        Product.findByPk(req.body.idProduct, {
+        })
+          .then((product) => {
+            return Item.create({
+              price: product.price,
+              quantity: req.body.quantity,
+              subTotal: product.price * req.body.quantity,
+              status: 1,
+              idUser: req.session.user.id,
+              idProduct: product.id,
+            });
+          })
+          .then((item) => res.redirect("/cart"))
+          .catch((e) => console.log(e));
+      } else {
+         Product.findByPk(req.body.idProduct, {
+         })
+           .then(product => {
+             let loggedIn = true;
+              res.render('products', {product, loggedIn, errors: errors.mapped()})
+           })
       }
     },
 }

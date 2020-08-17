@@ -4,9 +4,8 @@ var router = express.Router();
 const authMiddleware = require('../middlewares/auth');
 let usersController = require('../controllers/usersController');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('cart', { title: 'Express' });
-});
+
+router.get('/', authMiddleware, usersController.cart);
+
 
 module.exports = router;

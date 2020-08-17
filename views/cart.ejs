@@ -12,54 +12,66 @@
 
     <div class="cart_section">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="cart_container">
-                        <div class="cart_title">Mi Carrito<small> (1 producto añadido) </small></div>
-                        <div class="cart_items">
-                            <ul class="cart_list ul-cart">
-                                <li class="cart_item clearfix">
-                                    <div class="cart_item_image"><img src="/images/cds/cd31.jpg" alt=""></div>
-                                    <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                                        <div class="cart_item_name cart_info_col">
-                                            <div class="cart_item_title">Nombre</div>
-                                            <div class="cart_item_text">Ten - Pearl Jam</div>
-                                        </div>
-                                        <div class="cart_item_color cart_info_col">
-                                            <div class="cart_item_title">Formato</div>
-                                            <div class="cart_item_text">CD</div>
-                                        </div>
-                                        <div class="cart_item_quantity cart_info_col">
-                                            <div class="cart_item_title">Cantidad</div>
-                                            <div class="cart_item_text">1</div>
-                                        </div>
-                                        <div class="cart_item_price cart_info_col">
-                                            <div class="cart_item_title">Precio</div>
-                                            <div class="cart_item_text">$800</div>
-                                        </div>
-                                        <div class="cart_item_total cart_info_col">
-                                            <div class="cart_item_title">Total</div>
-                                            <div class="cart_item_text">$800</div>
-                                        </div>
-
-                                        <div class="d-flex align-items-center" id='deletebutton'>
-                                            <img src="https://www.iconsdb.com/icons/preview/red/trash-10-xxl.png" width="20" height="20" alt="">
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="order_total">
-                            <div class="order_total_content text-md-right">
-                                <div class="order_total_title">Total:</div>
-                                <div class="order_total_amount">$800</div>
+            <% if(items.length != 0) { %>
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="cart_container">
+                            <div class="cart_title">Mi Carrito<small> (<%=items.length%> producto añadido) </small>
+                            </div>
+                            <div class="cart_items">
+                                <ul class="cart_list ul-cart">
+                                    <% items.forEach(item => { %>
+                                        <li class="cart_item clearfix">
+                                            <div class="cart_item_image">
+                                                <img src="/images/<%=item.product.category%>/<%=item.product.img%>" alt="<%= item.product.name %>">
+                                            </div>
+                                            <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                                <div class="cart_item_name cart_info_col">
+                                                    <div class="cart_item_title">Nombre</div>
+                                                    <div class="cart_item_text"><%=product.name %></div>
+                                                </div>
+                                                <div class="cart_item_quantity cart_info_col">
+                                                    <div class="cart_item_title">Cantidad</div>
+                                                    <div class="cart_item_text"><%= item.quantity %></div>
+                                                </div>
+                                                <div class="cart_item_price cart_info_col">
+                                                    <div class="cart_item_title">Precio</div>
+                                                    <div class="cart_item_text">$<%= item.price; %></div>
+                                                </div>
+                                                <div class="d-flex align-items-center" id='deletebutton'>
+                                                    <form action="/deleteFromCart" method="POST">
+                                                        <button type="submit" class="action-button delete">
+                                                            <img src="https://www.iconsdb.com/icons/preview/red/trash-10-xxl.png" width="20" height="20" alt="">
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </li>     
+                                    <% }); %>
+                                </ul>
+                            </div>
+    
+                            <div class="order_total">
+                                <div class="order_total_content text-md-right">
+                                    <div class="order_total_title">Total:</div>
+                                    <div class="order_total_amount">$<%= items.reduce((total, item) => total + item.subTotal, 0) %></div>
+                                </div>
+                            </div>
+                            <div class="cart_buttons"> 
+                                <form action="/shop" method="POST">
+                                    <button type="button" class="buttoncart cart_button_clear">Finalizar Compra</button> 
+                                </form>
                             </div>
                         </div>
-                        <div class="cart_buttons"> <button type="button" class="buttoncart cart_button_clear">Seguir Comprando</button> <button type="button" class="buttoncart cart_button_clear">Finalizar Compra</button> </div>
                     </div>
                 </div>
-            </div>
+            <% } else { %>
+                <h1 class="col-12 emptyCart"> Tu carrito esta vacío.</h1>
+                <div>
+                    <img class="emptyImg" src="/images/empty-box.png" alt="emptybox">
+                </div>
+           <% } %>
+            
         </div>
     </div>
 
